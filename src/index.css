@@ -1,0 +1,49 @@
+body {
+    font-family: sans-serif;
+    font-size: 2em;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+#todo_list  {
+    background-color: rgba(73, 218, 184, 0.32);
+    height: 100vh;
+    width: 100vw;
+}
+ul{
+    display: grid;
+} li{
+    display: inline-flex;
+    font: 20pt sans-serif;
+} button{
+    display: grid;
+    padding: 5px;
+}
+  form {display: grid;
+    box-sizing: border-box;
+    grid-gap: 5px;
+    grid-template-columns: 50vw 25vw 25vw;
+    grid-template-rows: auto;
+    text-align: center;
+} input, button{
+    display: grid;
+    border-radius: 25px;
+}
+  .done {
+    text-decoration: line-through;
+  }
+
+  #navBar{
+      width: auto;
+      background-color: lightseagreen;
+      text-align: center;
+      color: white;
+  }
+
+  #bodyBackground {
+    display: grid;
+    width: 100vw;
+    font-family: sans-serif;
+    font-size: 1em;
+    background-color: #e092d7;
+}
