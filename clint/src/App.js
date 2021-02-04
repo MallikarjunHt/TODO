@@ -1,91 +1,44 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import { Button, FormControl, InputLabel, Input } from '@material-ui/core';
+import Todo from './Todo';
+import db from './config';
+import firebase from "firebase";
 
 const App = () => {
-  const [newTodo, setNewTodo] = useState('');
-  const [todos, setTodos] = useState([]);
+    const [tasks, setTasks] = useState([]);
+    const [input, setInput] = useState('');
+useEffect(()=>{
+db.collection('todos').orderBy('timestamp','desc').onSnapshot(snapshot =>
+    setTasks(snapshot.docs.map(doc => (
+       { id: doc.id, title : doc.data().title , status : doc.data().status })))
+    )} ,[]);
+console.log("tasks", tasks)
+    const addTask = (event) => {
+        event.preventDefault();
+        db.collection('todos').add({
+            title: input,
+            status: false,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        })
+        setInput('');
+    }
+    return (
+        <div>
+            <FormControl>
+                <InputLabel htmlFor="my-input">Add Task</InputLabel>
+                <Input value={input} onChange={(event) => setInput(event.target.value)} />
+                <Button disabled={!input} type="submit" variant="contained" color="primary" type="submit" onClick={addTask} >
+                    Add Task
+        </Button>
+            </FormControl>
 
-  const onNewTodoChange = useCallback((event) => {
-    setNewTodo(event.target.value);
-  }, []);
-
-  const formSubmitted = useCallback((event) => {
-    event.preventDefault();
-    if (!newTodo.trim()) return;
-    setTodos([
-      {
-        id: todos.length ? todos[0].id + 1 : 1,
-        content: newTodo,
-        done: false,
-      },
-      ...todos
-    ]);
-    setNewTodo('');
-  }, [newTodo, todos]);
-
-  useEffect(() => {
-    console.log('todos', todos);
-  }, [todos]);
-
-  const addTodo = useCallback((todo, index) => (event) => {
-    const newTodos = [...todos];
-    newTodos.splice(index, 1, {
-      ...todo,
-      done: !todo.done
-    });
-    setTodos(newTodos);
-  }, [todos]);
-
-  const removeTodo = useCallback((todo) => (event) => {
-    setTodos(todos.filter(otherTodo => otherTodo !== todo));
-  }, [todos]);
-
-  const markAllDone = useCallback(() => {
-    // create a copy of the array
-      // create a copy of each of the items
-        // update the done property to be true on each of the new items
-    const updatedTodos = todos.map(todo => {
-      return {
-        ...todo,
-        done: true,
-      };
-    });
-    setTodos(updatedTodos);
-  }, [todos]);
-
-  return (
-    <div>
-      <div id="navBar">TODO APP</div>
-      <div id="bodyBackground">
-      <label htmlFor="newTodo">Enter a Todo:</label>
-      <form onSubmit={formSubmitted}>
-        <input
-          id="newTodo"
-          name="newTodo"
-          value={newTodo}
-          onChange={onNewTodoChange}
-          placeholder="New todo item"
-        />
-        <button>Add Todo</button>
-        <button onClick={markAllDone}>Mark All Done</button>
-      </form>
-      </div>
-      <div id="todo_list">
-      <ul>
-        {todos.map((todo, index) => (
-          <li key={todo.id}>
-            <input
-              checked={todo.done}
-              type="checkbox"
-              onChange={addTodo(todo, index)}
-            />
-            <span className={todo.done ? 'done' : ''}>{todo.content}</span>
-            <button onClick={removeTodo(todo)}>Remove</button>
-          </li>
-        ))}
-      </ul>
-      </div>
-    </div>
-  );
+            <ul>
+                {tasks.map(task => (
+                    <Todo task={task} />
+                ))}
+            </ul>
+        </div>
+    );
 };
 
 
