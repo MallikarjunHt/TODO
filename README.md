@@ -12,10 +12,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
@@ -27,42 +23,54 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+# Firebase SetUp and Deploy
+
+install firebase tools cli to continue 
+# step 1: 
+  `npm install -g firebase-tools`
+  ---
+# step 2:
+  Login to firebase locally
+  `firebase login`
+ 
+  then chose the account you will be using to host and add firestore to.
+  ---
+# step 3: 
+
+   go to firebase [console](https://firebase.google.com/?gclid=Cj0KCQiA0-6ABhDMARIsAFVdQv-P7s6GIG-goXo4mNEdXAeEzkuEgdThMC-mwfFB2hkiOXN6_QcfbD8aAjm-EALw_wcB) 
+    * go to console
+    * Add project
+    * onece project is set 
+    * chose firestore and make initial setup 
+      * remember chose datbase in *testmode* for biginers once app is set you can always lock the database.
+    * copy the config and add in **config.js** file of the project  
+    
+   ---
+ # step 4:
+   initilise the firebase in app
+   `firebase init`
+   * use **spacebar** to select choose *Hosting*
+   * choose build folder remember this is the folder that you will be using while deplying `! dont put in public as it already contain index.html file `
+   * choose single page application 
+   * if needed choose CI/CD for my case i have not  
+   ---
+   
+# step 5: 
+   build the project to install dependency before deploying
+    `npm run build` this is normail npm command but this time we will be doing on the build folder we created 
+    **!NOTE** this will create a mimina folder to serve app faster refer React docks for more 
+    ---
+    
+# Step 6:
+ finally we will be deploying our App 
+ `firebase deploy`
+ and you will get a public URL use that to view your App
+ 
+ 
+ Happy Learning :books:
+    
