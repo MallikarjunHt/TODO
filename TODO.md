@@ -5,16 +5,12 @@
 - [x] List all todo
 - [x] create todo item
 - [x] delete todo item
-- [ ] Edit todo
-- [ ] save Entries to file or database
-- [ ] Restructure to use saved file
-- [ ] login and signup model
-    - [ ] validation
-    - [ ] varification
-    - [ ] deactivate account
-    - [ ] email otp validation for account setup
-- [ ] Custom naming convention
+- [x] Edit todo
+- [x] save Entries to file or database
+- [x] Restructure to use saved file
+- [ ] login model
+    - [ ] email login by firebase
 - [ ] export TODO List [email, pdf, customName, TableStyle]
 - [ ] Theams
 - [ ] set reminders [in app notification, email]
-- [ ] Deploy
+- [x] Deploy
