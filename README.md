@@ -1,3 +1,5 @@
+Article on this topic on [dev.to](https://dev.to/mallikarjunht/react-todo-with-firebase-for-database-and-deploy-2cnm)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
